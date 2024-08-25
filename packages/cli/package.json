@@ -1,0 +1,39 @@
+{
+  "name": "archiject",
+  "version": "0.0.1",
+  "description": "Create nextjs project.",
+  "author": {
+    "name": "Rifat Khan",
+    "url": "https://x.com/StepAsideLiL"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StepAsideLiL/archiject",
+    "directory": "packages/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "nextjs",
+    "features",
+    "ui"
+  ],
+  "type": "module",
+  "exports": "./dist/index.js",
+  "bin": {
+    "archiject": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "typescript": "^5.5.4"
+  }
+}
