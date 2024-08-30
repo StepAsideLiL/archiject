@@ -1,6 +1,6 @@
 {
   "name": "archiject",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Create nextjs project.",
   "author": {
     "name": "Rifat Khan",
@@ -16,7 +16,10 @@
   },
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "templates",
+    "README.md",
+    "package.json"
   ],
   "keywords": [
     "nextjs",
@@ -29,14 +32,19 @@
     "archiject": "./dist/index.js"
   },
   "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc"
-  },
-  "devDependencies": {
-    "@types/node": "^22.5.0",
-    "typescript": "^5.5.4"
+    "dev": "tsup --watch",
+    "build": "tsup"
   },
   "dependencies": {
-    "@inquirer/prompts": "^5.3.8"
+    "@inquirer/prompts": "^5.3.8",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.5.0",
+    "tsup": "^8.2.4",
+    "type-fest": "^4.26.0",
+    "typescript": "^5.5.4"
   }
 }

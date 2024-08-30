@@ -4,13 +4,16 @@
   "compilerOptions": {
     "lib": ["es2023"],
     "outDir": "dist",
-    "module": "NodeNext",
+    "module": "Node16",
     "target": "es2022",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "Node16",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": ["src"]
 }
