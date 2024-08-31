@@ -4,6 +4,7 @@ import { fileURLToPath } from "url";
 import { input, confirm } from "@inquirer/prompts";
 import { Command } from "commander";
 import { type PackageJson } from "type-fest";
+import { execa } from "execa";
 
 const CURRENT_DIR = process.cwd();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -62,6 +63,15 @@ const createNextjsProject = () => {
           }
         });
       }
+
+      return answer;
+    })
+    .then(async (answer) => {
+      const { stdout } = await execa("pnpm", ["install"], {
+        cwd: path.join(CURRENT_DIR, answer),
+      });
+
+      console.log(stdout);
     })
     .catch((error) => {
       console.log(error);

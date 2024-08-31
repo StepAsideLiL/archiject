@@ -1,6 +1,6 @@
 {
   "name": "archiject",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Create nextjs project.",
   "author": {
     "name": "Rifat Khan",
@@ -38,6 +38,7 @@
   "dependencies": {
     "@inquirer/prompts": "^5.3.8",
     "commander": "^12.1.0",
+    "execa": "^9.3.1",
     "fs-extra": "^11.2.0"
   },
   "devDependencies": {
