@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "publish": "pnpm build && npm publish"
+    "pub": "pnpm build && npm publish"
   },
   "dependencies": {
     "@inquirer/prompts": "^5.3.8",
