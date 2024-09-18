@@ -4,7 +4,7 @@ export type PackageManager = "npm" | "pnpm" | "yarn" | "bun";
  * Get user package manager.
  * @returns User package manager name (npm, pnpm, yarn, bun).
  */
-const userPackageManager = () => {
+const getUserPackageManager = () => {
   const userAgent = process.env.npm_config_user_agent || "";
 
   if (userAgent.startsWith("yarn")) {
@@ -17,5 +17,7 @@ const userPackageManager = () => {
 
   return "npm";
 };
+
+const userPackageManager = getUserPackageManager();
 
 export default userPackageManager;
