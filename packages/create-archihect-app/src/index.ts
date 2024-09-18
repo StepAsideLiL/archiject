@@ -2,6 +2,7 @@
 
 import { Command } from "commander";
 import packageInfo from "@/utils/packageInfo.js";
+import userPackageManager from "@/utils/userPackageManager.js";
 
 /**
  * Main entry point of create-archiject-app CLI
@@ -24,7 +25,7 @@ function main() {
     projectName = program.args[0];
   }
 
-  console.log(process.env.npm_config_user_agent);
+  console.log(userPackageManager);
 }
 
 main();

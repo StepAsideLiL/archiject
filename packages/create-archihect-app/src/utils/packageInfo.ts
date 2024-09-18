@@ -3,6 +3,10 @@ import fs from "fs-extra";
 import { PackageJson } from "type-fest";
 import { PACKAGE_ROOT_DIR } from "@/constents.js";
 
+/**
+ * Get the package info from package.json.
+ * @returns Package info in json format.
+ */
 const getPackageInfo = () => {
   const packageJsonPath = path.join(PACKAGE_ROOT_DIR, "package.json");
 
