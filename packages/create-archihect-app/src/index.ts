@@ -13,7 +13,7 @@ function main() {
   const program = new Command("create-archiject-app")
     .description("Create an archihect app with CLI.")
     .version(
-      packageInfo.name,
+      packageInfo.version,
       "-v, --version",
       "Output the current version of create-archiject-app.",
     )
