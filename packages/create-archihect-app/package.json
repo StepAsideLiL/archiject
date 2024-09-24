@@ -1,6 +1,6 @@
 {
   "name": "create-archiject-app",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Create archihect app.",
   "author": {
     "name": "Rifat Khan",
@@ -17,7 +17,7 @@
   "license": "MIT",
   "files": [
     "dist",
-    "template",
+    "templates",
     "README.md",
     "package.json"
   ],
