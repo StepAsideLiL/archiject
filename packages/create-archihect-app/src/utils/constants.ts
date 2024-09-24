@@ -1,15 +1,27 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
+/**
+ * Current directory of the user's project.
+ */
 const CURRENT_DIR = process.cwd();
 
+/**
+ * Path of the package root directory.
+ */
 const PACKAGE_ROOT_DIR = path.join(
   path.dirname(fileURLToPath(import.meta.url)),
   "../",
 );
 
+/**
+ * Path of the template directory.
+ */
 const TEMPLATE_DIR = path.join(PACKAGE_ROOT_DIR, "templates");
 
+/**
+ * Path of the Nextjs template directory.
+ */
 const NEXT_TEMPLATE_DIR = path.join(TEMPLATE_DIR, "nextjs");
 
 /**
