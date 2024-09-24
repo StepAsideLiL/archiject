@@ -1,14 +1,17 @@
 import path from "path";
 import fs from "fs-extra";
 import { PackageJson } from "type-fest";
-import constents from "@/constents.js";
+import { directories } from "@/constents.js";
 
 /**
  * Get the package info from package.json.
  * @returns Package info in json format.
  */
 const getPackageInfo = () => {
-  const packageJsonPath = path.join(constents.PACKAGE_ROOT_DIR, "package.json");
+  const packageJsonPath = path.join(
+    directories.PACKAGE_ROOT_DIR,
+    "package.json",
+  );
 
   const packageJson = fs.readJSONSync(packageJsonPath) as PackageJson;
 
