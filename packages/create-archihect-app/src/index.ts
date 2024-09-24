@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import packageInfo from "@/utils/packageInfo.js";
+import packageInfo from "@/utils/package-info.js";
 import { input } from "@inquirer/prompts";
-import validateProjectName from "@/utils/validateProjectName.js";
-import createProject from "@/main/createProject.js";
+import validateProjectName from "@/utils/validate-project-name.js";
+import createProject from "@/main/create-project.js";
 
 /**
  * Main entry point of create-archiject-app CLI
