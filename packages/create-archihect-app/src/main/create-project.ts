@@ -14,11 +14,11 @@ export default async function createProject(projectName: string) {
     await fs.emptyDir(projectPath);
   }
 
-  // Create package.json for Nextj
+  // Create package.json for Nextjs
   await createPackageJson(projectName, projectPath);
 
   // Create base files for Nextjs
-  const baseFilesToCreate = fs.readdirSync(
+  const baseFilesToCreate = await fs.readdir(
     path.join(directories.TEMPLATE_DIR, "nextjs/base"),
   );
 
