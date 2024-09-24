@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs-extra";
 import { PackageJson } from "type-fest";
-import { directories } from "@/constents.js";
+import { directories } from "@/utils/constants.js";
 
 /**
  * Get the package info from package.json.

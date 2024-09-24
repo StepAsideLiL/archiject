@@ -1,10 +1,8 @@
 import { execa } from "execa";
 import path from "path";
 import fs from "fs-extra";
-import os from "os";
-import { directories, packageVersions } from "@/constents.js";
+import { directories } from "@/utils/constants.js";
 import fg from "fast-glob";
-import userPackageManager from "@/utils/userPackageManager.js";
 import createPackageJson from "@/helpers/create-package-json.js";
 
 export default async function createProject(projectName: string) {

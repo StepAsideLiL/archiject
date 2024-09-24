@@ -1,4 +1,4 @@
-import { packageVersions } from "@/constents.js";
+import { packageVersions } from "@/utils/constants.js";
 import fsExtra from "fs-extra";
 import path from "path";
 import os from "os";
