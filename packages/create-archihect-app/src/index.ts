@@ -53,8 +53,6 @@ async function main() {
   }
 
   await createProject(projectName);
-
-  console.log("Finish");
 }
 
 main();
