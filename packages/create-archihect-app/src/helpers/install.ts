@@ -32,12 +32,12 @@ export default async function install(projectPath: string) {
     );
   }
 
-  // const installationProcess = e.execa(userPackageManager, ["install"], {
-  //   cwd: projectPath,
-  //   stdio: "inherit",
-  // });
+  const installationProcess = e.execa(userPackageManager, ["install"], {
+    cwd: projectPath,
+    stdio: "inherit",
+  });
 
-  // console.log("");
+  console.log("");
 
-  // await installationProcess;
+  await installationProcess;
 }
