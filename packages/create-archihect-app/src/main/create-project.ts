@@ -24,12 +24,6 @@ export default async function createProject(projectName: string) {
     projectPath,
   );
 
-  // Create App directory files for Nextjs
-  await createFilesFromTemplate(
-    path.join(directories.NEXT_TEMPLATE_DIR, "app"),
-    path.join(projectPath, "app"),
-  );
-
   await install(projectPath);
 
   console.log("");
