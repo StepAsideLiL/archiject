@@ -4,7 +4,7 @@ import { directories } from "@/utils/constants.js";
 import createPackageJson from "@/helpers/create-package-json.js";
 import createFilesFromTemplate from "@/helpers/create-files-from-template.js";
 import install from "@/helpers/install.js";
-import chalk from "chalk";
+import pc from "picocolors";
 
 export default async function createProject(projectName: string) {
   // Create project directory
@@ -33,5 +33,5 @@ export default async function createProject(projectName: string) {
   await install(projectPath);
 
   console.log("");
-  console.log(chalk.greenBright("Project created successfully."));
+  console.log(pc.greenBright("Project created successfully."));
 }

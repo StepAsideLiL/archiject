@@ -3,7 +3,7 @@ import * as e from "execa";
 import fs from "fs-extra";
 import path from "path";
 import { PackageJson } from "type-fest";
-import chalk from "chalk";
+import pc from "picocolors";
 
 /**
  * Install dependencies for the project.
@@ -19,7 +19,9 @@ export default async function install(projectPath: string) {
   console.log(`------------------------`);
 
   for (const key in packageJson.dependencies) {
-    console.log(chalk.blueBright(`${key}: ${packageJson.dependencies[key]}`));
+    console.log(
+      `${pc.cyan(`${key}`)}: ${pc.cyanBright(`${packageJson.dependencies[key]}`)}`,
+    );
   }
 
   console.log("");
@@ -28,7 +30,7 @@ export default async function install(projectPath: string) {
 
   for (const key in packageJson.devDependencies) {
     console.log(
-      chalk.blueBright(`${key}: ${packageJson.devDependencies[key]}`),
+      `${pc.cyan(`${key}`)}: ${pc.cyanBright(`${packageJson.devDependencies[key]}`)}`,
     );
   }
 
