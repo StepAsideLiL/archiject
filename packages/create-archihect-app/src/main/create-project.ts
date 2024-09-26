@@ -5,6 +5,7 @@ import createPackageJson from "@/helpers/create-package-json.js";
 import createFilesFromTemplate from "@/helpers/create-files-from-template.js";
 import install from "@/helpers/install.js";
 import pc from "picocolors";
+import initGit from "@/helpers/init-git.js";
 
 export default async function createProject(projectName: string) {
   // Create project directory
@@ -25,6 +26,8 @@ export default async function createProject(projectName: string) {
   );
 
   await install(projectPath);
+
+  await initGit(projectPath);
 
   console.log("");
   console.log(pc.greenBright("Project created successfully."));
