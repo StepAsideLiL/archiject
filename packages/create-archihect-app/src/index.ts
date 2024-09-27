@@ -5,6 +5,7 @@ import packageInfo from "@/utils/package-info.js";
 import { input } from "@inquirer/prompts";
 import validateProjectName from "@/utils/validate-project-name.js";
 import createProject from "@/main/create-project.js";
+import path from "path";
 
 /**
  * Main entry point of create-archiject-app CLI
@@ -17,14 +18,18 @@ async function main() {
       "-v, --version",
       "Output the current version of create-archiject-app.",
     )
-    .argument("[dir]", "The name of the directory and the application.")
+    .argument("[dir]", "The name of the project directory.")
     .usage("[dir] [opts]")
     .parse(process.argv);
 
   let projectName: string = "an-archiject-app";
+  let resolvedProjectPath: string = path.resolve(projectName);
 
   if (program.args.length > 0) {
-    projectName = program.args[0];
+    const projectDirName = program.args[0].trim();
+    resolvedProjectPath = path.resolve(projectDirName);
+    projectName = path.basename(resolvedProjectPath);
+
     if (!validateProjectName(projectName)) {
       console.log(
         "Project name may only include letters, numbers, underscores and hashes.",
@@ -33,7 +38,7 @@ async function main() {
     }
   } else {
     await input({
-      message: "Project name",
+      message: "Project Name",
       default: projectName,
       validate: (input: string) => {
         if (validateProjectName(input)) {
@@ -44,7 +49,8 @@ async function main() {
       },
     })
       .then((answer) => {
-        projectName = answer;
+        resolvedProjectPath = path.resolve(answer);
+        projectName = path.basename(resolvedProjectPath);
       })
       .catch((error) => {
         console.log(error);
@@ -52,7 +58,7 @@ async function main() {
       });
   }
 
-  await createProject(projectName);
+  await createProject(projectName, resolvedProjectPath);
 }
 
 main();
