@@ -1,8 +1,9 @@
 import { packageVersions } from "@/utils/constants.js";
-import fsExtra from "fs-extra";
+import fs from "fs-extra";
 import path from "path";
 import os from "os";
 import { PackageJson } from "type-fest";
+import ora from "ora";
 
 /**
  * This function creates the package.json file for the project.
@@ -13,6 +14,8 @@ export default async function createPackageJson(
   projectName: string,
   projectPath: string,
 ) {
+  const spinner = ora("Creating package.json").start();
+
   const packageJson: PackageJson = {
     name: projectName,
     version: "0.0.1",
@@ -48,8 +51,16 @@ export default async function createPackageJson(
     },
   };
 
-  await fsExtra.writeFile(
-    path.join(projectPath, "package.json"),
-    JSON.stringify(packageJson, null, 2) + os.EOL,
-  );
+  await fs
+    .writeFile(
+      path.join(projectPath, "package.json"),
+      JSON.stringify(packageJson, null, 2) + os.EOL,
+    )
+    .then(() => {
+      spinner.succeed("package.json created successfully.");
+    })
+    .catch((error) => {
+      console.log(error);
+      process.exit(1);
+    });
 }

@@ -24,6 +24,9 @@ export default async function createProject(
   }
   await fs.mkdir(projectPath, { recursive: true });
 
+  console.log(`Project Name: ${pc.magentaBright(projectName)}`);
+  console.log(`Project Path: ${pc.magentaBright(projectPath)}`);
+
   // Create package.json for Nextjs
   await createPackageJson(projectName, projectPath);
 
