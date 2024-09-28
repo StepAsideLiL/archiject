@@ -4,7 +4,7 @@ import { Command } from "commander";
 import packageInfo from "@/utils/package-info.js";
 import { input, select } from "@inquirer/prompts";
 import validateProjectName from "@/utils/validate-project-name.js";
-import createProject from "@/main/create-project.js";
+import createProject from "@/create-project.js";
 import path from "path";
 import { optionsSchema } from "@/schema.js";
 import { colors } from "@/utils/contents/colors.js";
