@@ -6,10 +6,13 @@ import createFilesFromTemplate from "@/helpers/create-files-from-template.js";
 import install from "@/helpers/install.js";
 import pc from "picocolors";
 import initGit from "@/helpers/init-git.js";
+import { type Options } from "@/schema.js";
+import createFilesFromNextjsOptionsTemplate from "@/helpers/create-files-from-nextjs-options-template.js";
 
 export default async function createProject(
   projectName: string,
   projectPath: string,
+  options: Options,
 ) {
   // Create project directory
   if (fs.pathExistsSync(projectPath)) {
@@ -36,9 +39,21 @@ export default async function createProject(
     projectPath,
   );
 
-  await install(projectPath);
+  // Create files for Nextjs based on options
+  await createFilesFromNextjsOptionsTemplate(
+    path.join(directories.NEXT_TEMPLATE_DIR, "options"),
+    projectPath,
+    options.style,
+    options.color,
+  );
 
-  await initGit(projectPath);
+  if (options.install) {
+    await install(projectPath);
+  }
+
+  if (options.git) {
+    await initGit(projectPath);
+  }
 
   console.log("");
   console.log(pc.greenBright("Project created successfully."));

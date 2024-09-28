@@ -2,10 +2,12 @@
 
 import { Command } from "commander";
 import packageInfo from "@/utils/package-info.js";
-import { input } from "@inquirer/prompts";
+import { input, select } from "@inquirer/prompts";
 import validateProjectName from "@/utils/validate-project-name.js";
 import createProject from "@/main/create-project.js";
 import path from "path";
+import { optionsSchema } from "@/schema.js";
+import { colors } from "@/utils/contents/colors.js";
 
 /**
  * Main entry point of create-archiject-app CLI
@@ -18,12 +20,19 @@ async function main() {
       "-v, --version",
       "Output the current version of create-archiject-app.",
     )
-    .argument("[dir]", "The name of the project directory.")
     .usage("[dir] [opts]")
+    .argument("[dir]", "The name of the project directory.")
+    .option("-d --default", "Use default options.", false)
+    .option("--style [style]", "The style is based on Shadcn.", "new-york")
+    .option("--color [color]", "The color is based on Shadcn.", "neutral")
+    .option("--no-install", "Skip installing dependencies.")
+    .option("--no-git", "Skip initializing git.")
     .parse(process.argv);
 
   let projectName: string = "an-archiject-app";
   let resolvedProjectPath: string = path.resolve(projectName);
+
+  const options = optionsSchema.parse(program.opts());
 
   if (program.args.length > 0) {
     const projectDirName = program.args[0].trim();
@@ -58,7 +67,35 @@ async function main() {
       });
   }
 
-  await createProject(projectName, resolvedProjectPath);
+  if (!options.default) {
+    await select({
+      message: "Select the style",
+      choices: ["new-york", "default"],
+      default: options.style,
+    })
+      .then((answer) => {
+        options.style = answer === "new-york" ? "new-york" : "default";
+      })
+      .catch((error) => {
+        console.log(error);
+        process.exit(1);
+      });
+
+    await select({
+      message: "Select the color",
+      choices: colors.map((color) => color.name),
+      default: options.color,
+    })
+      .then((answer) => {
+        options.color = answer as string;
+      })
+      .catch((error) => {
+        console.log(error);
+        process.exit(1);
+      });
+  }
+
+  await createProject(projectName, resolvedProjectPath, options);
 }
 
 main();
