@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs-extra";
 import { directories } from "@/utils/constants.js";
 import createPackageJson from "@/helpers/create-package-json.js";
-import createFilesFromTemplate from "@/helpers/create-files-from-template.js";
+import createFilesFromTemplate from "@/helpers/create-files-from-nextjs-base-template.js";
 import install from "@/helpers/install.js";
 import pc from "picocolors";
 import initGit from "@/helpers/init-git.js";
