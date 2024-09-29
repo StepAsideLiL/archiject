@@ -3,12 +3,12 @@ import fs from "fs-extra";
 import { directories } from "@/utils/constants.js";
 import createPackageJson from "@/helpers/create-package-json.js";
 import createFilesFromTemplate from "@/helpers/create-files-from-nextjs-base-template.js";
-import install from "@/helpers/install.js";
+import installPackages from "@/helpers/install-packages.js";
 import pc from "picocolors";
 import initGit from "@/helpers/init-git.js";
 import { type Options } from "@/schema.js";
 import createFilesFromNextjsOptionsTemplate from "@/helpers/create-files-from-nextjs-options-template.js";
-import installFeature from "@/helpers/install-feature.js";
+import installDarkModeFeature from "@/helpers/install-dark-mode-feature.js";
 
 export default async function createProject(
   projectName: string,
@@ -31,7 +31,7 @@ export default async function createProject(
   console.log(`Project Name: ${pc.magentaBright(projectName)}`);
   console.log(`Project Path: ${pc.magentaBright(projectPath)}`);
 
-  // // Create base files for Nextjs
+  // Create base files for Nextjs
   await createFilesFromTemplate(
     path.join(directories.NEXT_TEMPLATE_DIR, "base"),
     projectPath,
@@ -46,21 +46,12 @@ export default async function createProject(
     options.darkMode,
   );
 
-  // // Create package.json for Nextjs
+  // Create package.json for Nextjs
   await createPackageJson(projectName, projectPath);
 
-  if (options.install) {
-    await install(projectPath);
-  }
-
-  if (options.darkMode) {
-    await installFeature(projectPath, "dark-mode");
-  }
-
-  if (options.git) {
-    await initGit(projectPath);
-  }
-
-  console.log("");
-  console.log(pc.greenBright("Project created successfully."));
+  await Promise.all([
+    options.install && (await installPackages(projectPath)),
+    options.darkMode && (await installDarkModeFeature(projectPath)),
+    options.git && (await initGit(projectPath)),
+  ]);
 }

@@ -90,6 +90,4 @@ export default async function createFilesFromNextjsOptionsTemplate(
       await fs.writeFile(path.join(projectPath, fileName), content);
     }
   });
-
-  console.log(templateFiles);
 }

@@ -9,7 +9,7 @@ import pc from "picocolors";
  * Install dependencies for the project.
  * @param projectPath Path of the project directory.
  */
-export default async function install(projectPath: string) {
+export default async function installPackages(projectPath: string) {
   const packageJson: PackageJson = await fs.readJson(
     path.join(projectPath, "package.json"),
   );

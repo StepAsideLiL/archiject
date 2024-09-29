@@ -8,6 +8,7 @@ import createProject from "@/create-project.js";
 import path from "path";
 import { optionsSchema } from "@/schema.js";
 import { colors } from "@/utils/contents/colors.js";
+import pc from "picocolors";
 
 /**
  * Main entry point of create-archiject-app CLI
@@ -34,8 +35,6 @@ async function main() {
   let resolvedProjectPath: string = path.resolve(projectName);
 
   const options = optionsSchema.parse(program.opts());
-
-  console.log(options);
 
   if (program.args.length > 0) {
     const projectDirName = program.args[0].trim();
@@ -99,6 +98,8 @@ async function main() {
   }
 
   await createProject(projectName, resolvedProjectPath, options);
+
+  console.log(pc.greenBright("Project created successfully."));
 }
 
 main();

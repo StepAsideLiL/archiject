@@ -2,6 +2,7 @@ import { directories } from "@/utils/constants.js";
 import fs from "fs-extra";
 import path from "path";
 import * as e from "execa";
+import pc from "picocolors";
 import userPackageManager, {
   userPackageManagerExecutables,
 } from "@/utils/user-package-manager.js";
@@ -15,10 +16,14 @@ type Feature = {
   };
 };
 
-export default async function installFeature(
-  projectPath: string,
-  feature: string,
-) {
+/**
+ * Install dark mode feature for the project.
+ * @param projectPath Path of the project directory.
+ */
+export default async function installDarkModeFeature(projectPath: string) {
+  console.log("");
+  console.log(pc.magentaBright("Installing dark mode feature..."));
+
   const pathToFeature = path.join(
     directories.NEXT_TEMPLATE_DIR,
     "options/features/dark-mode/info.json",
@@ -26,21 +31,23 @@ export default async function installFeature(
 
   const featureInfo = (await fs.readJson(pathToFeature)) as Feature;
 
-  featureInfo.dependencies.packages.forEach(async (packageName) => {
-    await e.execa(userPackageManager, ["install", packageName], {
-      cwd: projectPath,
-      stdio: "inherit",
-    });
-  });
-
-  featureInfo.dependencies.ui.forEach(async (uiName) => {
+  await Promise.all([
     await e.execa(
-      userPackageManagerExecutables,
-      ["shadcn@latest", "add", uiName],
+      userPackageManager,
+      ["install", featureInfo.dependencies.packages.join(" ")],
       {
         cwd: projectPath,
         stdio: "inherit",
       },
-    );
-  });
+    ),
+
+    await e.execa(
+      userPackageManagerExecutables,
+      ["shadcn@latest", "add", featureInfo.dependencies.ui.join(" ")],
+      {
+        cwd: projectPath,
+        stdio: "inherit",
+      },
+    ),
+  ]);
 }
