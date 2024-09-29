@@ -87,7 +87,7 @@ async function main() {
       default: options.color,
     })
       .then((answer) => {
-        options.color = answer as string;
+        options.color = (answer as string).toLowerCase();
       })
       .catch((error) => {
         console.log(error);
