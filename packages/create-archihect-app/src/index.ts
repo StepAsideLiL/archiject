@@ -25,6 +25,7 @@ async function main() {
     .option("-d --default", "Use default options.", false)
     .option("--style [style]", "The style is based on Shadcn.", "new-york")
     .option("--color [color]", "The color is based on Shadcn.", "neutral")
+    .option("--no-dark-mode", "Disable dark mode.")
     .option("--no-install", "Skip installing dependencies.")
     .option("--no-git", "Skip initializing git.")
     .parse(process.argv);
@@ -33,6 +34,8 @@ async function main() {
   let resolvedProjectPath: string = path.resolve(projectName);
 
   const options = optionsSchema.parse(program.opts());
+
+  console.log(options);
 
   if (program.args.length > 0) {
     const projectDirName = program.args[0].trim();

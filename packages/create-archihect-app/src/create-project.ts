@@ -8,6 +8,7 @@ import pc from "picocolors";
 import initGit from "@/helpers/init-git.js";
 import { type Options } from "@/schema.js";
 import createFilesFromNextjsOptionsTemplate from "@/helpers/create-files-from-nextjs-options-template.js";
+import installFeature from "@/helpers/install-feature.js";
 
 export default async function createProject(
   projectName: string,
@@ -30,10 +31,7 @@ export default async function createProject(
   console.log(`Project Name: ${pc.magentaBright(projectName)}`);
   console.log(`Project Path: ${pc.magentaBright(projectPath)}`);
 
-  // Create package.json for Nextjs
-  await createPackageJson(projectName, projectPath);
-
-  // Create base files for Nextjs
+  // // Create base files for Nextjs
   await createFilesFromTemplate(
     path.join(directories.NEXT_TEMPLATE_DIR, "base"),
     projectPath,
@@ -45,10 +43,18 @@ export default async function createProject(
     projectPath,
     options.style,
     options.color,
+    options.darkMode,
   );
+
+  // // Create package.json for Nextjs
+  await createPackageJson(projectName, projectPath);
 
   if (options.install) {
     await install(projectPath);
+  }
+
+  if (options.darkMode) {
+    await installFeature(projectPath, "dark-mode");
   }
 
   if (options.git) {
