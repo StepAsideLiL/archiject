@@ -1,7 +1,7 @@
 {
   "name": "dark-mode",
   "version": "1.0.0",
-  "dependancies": {
+  "dependencies": {
     "packages": ["next-themes"],
     "ui": ["button"]
   }
