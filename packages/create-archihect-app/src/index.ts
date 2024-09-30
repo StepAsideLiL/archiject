@@ -14,8 +14,8 @@ import pc from "picocolors";
  * Main entry point of create-archiject-app CLI
  */
 async function main() {
-  const program = new Command("create-archiject-app")
-    .description("Create an archihect app with CLI.")
+  const program = new Command(packageInfo.name)
+    .description(packageInfo.description)
     .version(
       packageInfo.version,
       "-v, --version",
@@ -24,8 +24,8 @@ async function main() {
     .usage("[dir] [opts]")
     .argument("[dir]", "The name of the project directory.")
     .option("-d --default", "Use default options.", false)
-    .option("--style [style]", "The style is based on Shadcn.", "new-york")
-    .option("--color [color]", "The color is based on Shadcn.", "neutral")
+    .option("--style [style]", "Style based on Shadcn.", "new-york")
+    .option("--color [color]", "Color based on Shadcn.", "neutral")
     .option("--no-dark-mode", "Disable dark mode.")
     .option("--no-install", "Skip installing dependencies.")
     .option("--no-git", "Skip initializing git.")
@@ -71,7 +71,7 @@ async function main() {
 
   if (!options.default) {
     await select({
-      message: "Select the style",
+      message: "Select a style (based of Shadcn/UI)",
       choices: ["new-york", "default"],
       default: options.style,
     })
@@ -84,7 +84,7 @@ async function main() {
       });
 
     await select({
-      message: "Select the color",
+      message: "Select a color (based of Shadcn/UI)",
       choices: colors.map((color) => color.name),
       default: options.color,
     })

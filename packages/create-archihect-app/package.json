@@ -1,10 +1,10 @@
 {
   "name": "create-archiject-app",
-  "version": "0.0.14",
-  "description": "Create archihect app.",
+  "version": "0.1.0",
+  "description": "Scaffold a new project with Nextjs and Shadcn/UI.",
   "author": {
     "name": "Rifat Khan",
-    "url": "https://x.com/StepAsideLiL"
+    "url": "https://github.com/StepAsideLiL"
   },
   "repository": {
     "type": "git",
