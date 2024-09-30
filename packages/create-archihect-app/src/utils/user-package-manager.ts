@@ -18,12 +18,12 @@ const getUserPackageManager = () => {
 
 /**
  * Get user package manager executables.
- * @returns User package manager executables (npx, pnpm dlx, bunx --bun).
+ * @returns User package manager executables (yarn dlx, pnpm dlx, bunx --bun).
  */
 const getUserPackageManagerExecutables = () => {
   switch (getUserPackageManager()) {
     case "yarn":
-      return "npx";
+      return "yarn dlx";
     case "pnpm":
       return "pnpm dlx";
     case "bun":
