@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import { type PackageJson } from "type-fest";
-import { CURRENT_DIR } from "@/utils/constants.js";
+import { directories } from "@/utils/constants.js";
 
 /**
  * Create the directory structure and copy the files from the template.
@@ -24,16 +24,16 @@ export default function createDirectoryContents(
         const packageJson = fs.readJSONSync(origFilePath) as PackageJson;
         packageJson.name = projectName;
 
-        const writePath = `${CURRENT_DIR}/${projectName}/${file}`;
+        const writePath = `${directories.CURRENT_WORKING_DIR}/${projectName}/${file}`;
         fs.writeJsonSync(writePath, packageJson, { spaces: 2 });
       } else {
         const contents = fs.readFileSync(origFilePath, "utf8");
 
-        const writePath = `${CURRENT_DIR}/${projectName}/${file}`;
+        const writePath = `${directories.CURRENT_WORKING_DIR}/${projectName}/${file}`;
         fs.writeFileSync(writePath, contents, "utf8");
       }
     } else if (stats.isDirectory()) {
-      fs.mkdirSync(`${CURRENT_DIR}/${projectName}/${file}`);
+      fs.mkdirSync(`${directories.CURRENT_WORKING_DIR}/${projectName}/${file}`);
 
       // recursive call
       createDirectoryContents(

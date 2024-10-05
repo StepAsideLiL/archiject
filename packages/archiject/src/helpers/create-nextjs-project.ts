@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import { confirm } from "@inquirer/prompts";
 import createDirectoryContents from "@/utils/create-directory-contents.js";
 
-import { CURRENT_DIR, NEXTJS_TEMPLATE_PATH } from "@/utils/constants.js";
+import { directories, NEXTJS_TEMPLATE_PATH } from "@/utils/constants.js";
 import path from "path";
 import { execa } from "execa";
 
@@ -11,7 +11,7 @@ import { execa } from "execa";
  * @param projectName Name of the project.
  */
 export default async function createNextjsProject(projectName: string) {
-  const projectPath = `${CURRENT_DIR}/${projectName}`;
+  const projectPath = `${directories.CURRENT_WORKING_DIR}/${projectName}`;
 
   const isDirExists = fs.existsSync(projectPath);
   if (!isDirExists) {
@@ -34,7 +34,7 @@ export default async function createNextjsProject(projectName: string) {
   }
 
   const { stdout } = await execa("pnpm", ["install"], {
-    cwd: path.join(CURRENT_DIR, projectName),
+    cwd: path.join(directories.CURRENT_WORKING_DIR, projectName),
   });
 
   console.log(stdout);
