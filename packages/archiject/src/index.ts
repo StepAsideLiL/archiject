@@ -3,16 +3,20 @@
 import { Command } from "commander";
 import { init } from "@/commands/init.js";
 
-import { getPackageVersion } from "@/utils/package-info.js";
+import packageInfo from "@/utils/package-info.js";
 
 /**
  * Main entry point of Archiject CLI
  */
 function main() {
   const program = new Command()
-    .name("Archiject")
-    .description("Build fast")
-    .version(getPackageVersion() || "0.0.1")
+    .name(packageInfo.name)
+    .description(packageInfo.description)
+    .version(
+      packageInfo.version,
+      "-v, --version",
+      "Output the current version of create-archiject-app.",
+    )
     .action(() => {
       program.help();
     });
