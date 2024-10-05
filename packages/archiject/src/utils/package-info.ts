@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs-extra";
 import { PackageJson } from "type-fest";
-import { PACKAGE_ROOT_DIR } from "@/src/constents.js";
+import { PACKAGE_ROOT_DIR } from "@/utils/constants.js";
 
 export function getPackageVersion() {
   const packageJsonPath = path.join(PACKAGE_ROOT_DIR, "package.json");

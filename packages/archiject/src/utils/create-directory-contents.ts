@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import { type PackageJson } from "type-fest";
-import { CURRENT_DIR } from "@/src/constents.js";
+import { CURRENT_DIR } from "@/utils/constants.js";
 
 /**
  * Create the directory structure and copy the files from the template.

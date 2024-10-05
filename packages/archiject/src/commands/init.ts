@@ -1,7 +1,7 @@
 import { input } from "@inquirer/prompts";
 import { Command } from "commander";
 import z from "zod";
-import createNextjsProject from "@/src/helpers/createNextjsProject.js";
+import createNextjsProject from "@/helpers/create-nextjs-project.js";
 
 const initOptionSchema = z.string().optional();
 

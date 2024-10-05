@@ -1,8 +1,8 @@
 import fs from "fs-extra";
 import { confirm } from "@inquirer/prompts";
-import createDirectoryContents from "@/src/utils/createDirectoryContents.js";
+import createDirectoryContents from "@/utils/create-directory-contents.js";
 
-import { CURRENT_DIR, NEXTJS_TEMPLATE_PATH } from "@/src/constents.js";
+import { CURRENT_DIR, NEXTJS_TEMPLATE_PATH } from "@/utils/constants.js";
 import path from "path";
 import { execa } from "execa";
 

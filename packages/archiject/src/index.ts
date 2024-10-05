@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import { init } from "@/src/commands/init.js";
+import { init } from "@/commands/init.js";
 
-import { getPackageVersion } from "@/src/utils/packageInfo.js";
+import { getPackageVersion } from "@/utils/package-info.js";
 
 /**
  * Main entry point of Archiject CLI
