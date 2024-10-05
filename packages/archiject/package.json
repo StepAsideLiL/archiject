@@ -1,15 +1,15 @@
 {
   "name": "archiject",
-  "version": "0.0.6",
-  "description": "Create nextjs project.",
+  "version": "0.0.7",
+  "description": "Scaffold your project with features and ui",
   "author": {
     "name": "Rifat Khan",
-    "url": "https://x.com/StepAsideLiL"
+    "url": "https://github.com/StepAsideLiL"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/StepAsideLiL/archiject",
-    "directory": "packages/cli"
+    "directory": "packages/archihect"
   },
   "publishConfig": {
     "access": "public"
@@ -34,7 +34,8 @@
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
-    "pub": "pnpm build && npm publish"
+    "pub:latest": "pnpm build && pnpm publish",
+    "pub:beta": "pnpm build && pnpm publish --no-git-checks --tag beta"
   },
   "dependencies": {
     "@inquirer/prompts": "^5.3.8",
