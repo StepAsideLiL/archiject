@@ -29,7 +29,7 @@
   "type": "module",
   "exports": "./dist/index.js",
   "bin": {
-    "archiject": "./dist/index.js"
+    "aj": "./dist/index.js"
   },
   "scripts": {
     "dev": "tsup --watch",
@@ -38,17 +38,17 @@
     "pub:beta": "pnpm build && pnpm publish --no-git-checks --tag beta"
   },
   "dependencies": {
-    "@inquirer/prompts": "^5.3.8",
+    "@inquirer/prompts": "^6.0.1",
     "commander": "^12.1.0",
-    "execa": "^9.3.1",
+    "execa": "^9.4.0",
     "fs-extra": "^11.2.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.5.0",
-    "tsup": "^8.2.4",
-    "type-fest": "^4.26.0",
-    "typescript": "^5.5.4"
+    "@types/node": "^22.7.4",
+    "tsup": "^8.3.0",
+    "type-fest": "^4.26.1",
+    "typescript": "^5.6.2"
   }
 }
