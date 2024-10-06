@@ -1,3 +1,6 @@
+/**
+ * Colors from shadcn
+ */
 export const colors = [
   {
     name: "Neutral",
@@ -301,6 +304,11 @@ export const colors = [
   },
 ];
 
+/**
+ * Get color variables by label.
+ * @param label Label of the colors.
+ * @returns String of color variables.
+ */
 export function getColorByLabel(label: string) {
   const color = colors.find((color) => color.label === label);
 

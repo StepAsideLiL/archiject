@@ -26,6 +26,8 @@ async function main() {
     .option("-d --default", "Use default options.", false)
     .option("--style [style]", "Style based on Shadcn.", "new-york")
     .option("--color [color]", "Color based on Shadcn.", "neutral")
+    .option("--src", "Use src directory.", false)
+    .option("--import-alias [importAlias]", "Specify import alias.", "@")
     .option("--no-dark-mode", "Disable dark mode.")
     .option("--no-install", "Skip installing dependencies.")
     .option("--no-git", "Skip initializing git.")
@@ -35,6 +37,15 @@ async function main() {
   let resolvedProjectPath: string = path.resolve(projectName);
 
   const options = optionsSchema.parse(program.opts());
+
+  if (options.importAlias.length > 1) {
+    console.log(
+      pc.redBright(
+        `Import alias must be a single character. Example: ${pc.italic(pc.white("@"))}, ${pc.italic(pc.white("~"))}, ${pc.italic(pc.white("#"))}.`,
+      ),
+    );
+    process.exit(1);
+  }
 
   if (program.args.length > 0) {
     const projectDirName = program.args[0].trim();
@@ -99,7 +110,11 @@ async function main() {
 
   await createProject(projectName, resolvedProjectPath, options);
 
-  console.log(pc.greenBright("Project created successfully."));
+  console.log(
+    pc.greenBright(
+      `Project created successfully in ${pc.underline(resolvedProjectPath)}`,
+    ),
+  );
 }
 
 main();

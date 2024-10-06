@@ -8,7 +8,7 @@ import path from "path";
  * @param projectPath Path of the project directory.
  * @param ignore Array of patterns to ignore files.
  */
-export default async function createFilesFromTemplate(
+export default async function createFilesFromNextjsBaseTemplate(
   templatePath: string,
   projectPath: string,
   ignore: string[] = [],
@@ -37,7 +37,7 @@ export default async function createFilesFromTemplate(
       recursive: true,
     });
 
-    /\.(tsx|ts|css)$/.test(file)
+    /\.(tsx|ts|css|mjs|md|json|mdx)$/.test(file)
       ? await fs.writeFile(path.join(projectPath, fileName()), content)
       : await fs.copyFile(templateFilePath, path.join(projectPath, fileName()));
   });
