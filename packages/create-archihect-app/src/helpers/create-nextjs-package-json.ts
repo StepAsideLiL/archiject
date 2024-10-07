@@ -11,7 +11,7 @@ import getPackageVersion from "@/utils/get-package-version.js";
  * @param projectName Name of the project.
  * @param projectPath The path of the project in user's system.
  */
-export default async function createPackageJson(
+export default async function createNextjsPackageJson(
   projectName: string,
   projectPath: string,
 ) {

@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs-extra";
 import { directories } from "@/utils/constants.js";
-import createPackageJson from "@/helpers/create-package-json.js";
+import createNextjsPackageJson from "@/helpers/create-nextjs-package-json.js";
 import createFilesFromNextjsBaseTemplate from "@/helpers/create-files-from-nextjs-base-template.js";
 import installPackages from "@/helpers/install-packages.js";
 import pc from "picocolors";
@@ -48,7 +48,7 @@ export default async function createProject(
   });
 
   // Create package.json for Nextjs
-  await createPackageJson(projectName, projectPath);
+  await createNextjsPackageJson(projectName, projectPath);
 
   await Promise.all([
     options.install && (await installPackages(projectPath)),
