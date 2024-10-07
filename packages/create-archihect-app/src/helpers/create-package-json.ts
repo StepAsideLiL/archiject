@@ -4,6 +4,7 @@ import path from "path";
 import os from "os";
 import { PackageJson } from "type-fest";
 import ora from "ora";
+import getPackageVersion from "@/utils/get-package-version.js";
 
 /**
  * This function creates the package.json file for the project.
@@ -27,15 +28,15 @@ export default async function createPackageJson(
       lint: "next lint",
     },
     dependencies: {
-      "@radix-ui/react-icons": "^1.3.0",
-      "class-variance-authority": "^0.7.0",
-      clsx: "^2.1.1",
-      "lucide-react": "^0.446.0",
+      "@radix-ui/react-icons": "latest",
+      "class-variance-authority": "latest",
+      clsx: "latest",
+      "lucide-react": "latest",
       next: packageVersions.next,
       react: packageVersions.nextPeerReact,
       "react-dom": packageVersions.nextPeerReact,
-      "tailwind-merge": "^2.5.2",
-      "tailwindcss-animate": "^1.0.7",
+      "tailwind-merge": "latest",
+      "tailwindcss-animate": "latest",
     },
     devDependencies: {
       "@types/node": packageVersions.nodeTypes,
@@ -44,12 +45,25 @@ export default async function createPackageJson(
       eslint: packageVersions.eslint,
       "eslint-config-next": packageVersions.next,
       postcss: packageVersions.postCss,
-      prettier: "^3.3.3",
-      "prettier-plugin-tailwindcss": "^0.6.8",
+      prettier: "latest",
+      "prettier-plugin-tailwindcss": "latest",
       tailwindcss: packageVersions.tailwindCss,
       typescript: packageVersions.typescript,
     },
   };
+
+  for (const dependency in packageJson.dependencies) {
+    if (packageJson.dependencies[dependency] === "latest") {
+      packageJson.dependencies[dependency] =
+        `^${await getPackageVersion(dependency)}`;
+    }
+  }
+  for (const dependency in packageJson.devDependencies) {
+    if (packageJson.devDependencies[dependency] === "latest") {
+      packageJson.devDependencies[dependency] =
+        `^${await getPackageVersion(dependency)}`;
+    }
+  }
 
   await fs
     .writeFile(
