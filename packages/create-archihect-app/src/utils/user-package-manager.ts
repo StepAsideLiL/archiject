@@ -1,3 +1,5 @@
+import * as e from "execa";
+
 /**
  * Get user package manager.
  * @returns User package manager name (npm, pnpm, yarn, bun).
@@ -33,8 +35,19 @@ const getUserPackageManagerExecutables = () => {
   }
 };
 
-const userPackageManager = getUserPackageManager();
+/**
+ * Get user package manager version.
+ * @returns User package manager version.
+ */
+async function getPackageManagerWithVersion() {
+  const { stdout } = await e.execa(getUserPackageManager(), ["-v"]);
+  return stdout;
+}
 
-export const userPackageManagerExecutables = getUserPackageManagerExecutables();
+const userPackageManager = {
+  title: getUserPackageManager(),
+  executables: getUserPackageManagerExecutables(),
+  version: await getPackageManagerWithVersion(),
+};
 
 export default userPackageManager;

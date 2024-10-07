@@ -34,7 +34,7 @@ export default async function installPackages(projectPath: string) {
     );
   }
 
-  const installationProcess = e.execa(userPackageManager, ["install"], {
+  const installationProcess = e.execa(userPackageManager.title, ["install"], {
     cwd: projectPath,
     stdio: "inherit",
   });

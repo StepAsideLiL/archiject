@@ -8,7 +8,7 @@ import userPackageManager from "@/utils/user-package-manager.js";
  */
 export default async function getPackageVersion(packageName: string) {
   try {
-    const version = await e.execa(userPackageManager, [
+    const version = await e.execa(userPackageManager.title, [
       "view",
       packageName,
       "version",

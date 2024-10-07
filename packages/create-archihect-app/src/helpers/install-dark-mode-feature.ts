@@ -3,9 +3,7 @@ import fs from "fs-extra";
 import path from "path";
 import * as e from "execa";
 import pc from "picocolors";
-import userPackageManager, {
-  userPackageManagerExecutables,
-} from "@/utils/user-package-manager.js";
+import userPackageManager from "@/utils/user-package-manager.js";
 
 type Feature = {
   name: string;
@@ -33,7 +31,7 @@ export default async function installDarkModeFeature(projectPath: string) {
 
   await Promise.all([
     await e.execa(
-      userPackageManager,
+      userPackageManager.title,
       ["install", featureInfo.dependencies.packages.join(" ")],
       {
         cwd: projectPath,
@@ -42,7 +40,7 @@ export default async function installDarkModeFeature(projectPath: string) {
     ),
 
     await e.execa(
-      userPackageManagerExecutables,
+      userPackageManager.executables,
       ["shadcn@latest", "add", featureInfo.dependencies.ui.join(" ")],
       {
         cwd: projectPath,
