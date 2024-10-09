@@ -25,6 +25,11 @@ const TEMPLATE_DIR = path.join(PACKAGE_ROOT_DIR, "templates");
 const NEXT_TEMPLATE_DIR = path.join(TEMPLATE_DIR, "nextjs");
 
 /**
+ * Path of the Turborepo template directory.
+ */
+const TURBO_TEMPLATE_DIR = path.join(TEMPLATE_DIR, "turbo");
+
+/**
  * Path of specific directories.
  */
 export const directories = {
@@ -32,6 +37,7 @@ export const directories = {
   PACKAGE_ROOT_DIR,
   TEMPLATE_DIR,
   NEXT_TEMPLATE_DIR,
+  TURBO_TEMPLATE_DIR,
 };
 
 /**

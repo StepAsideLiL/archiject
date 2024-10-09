@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const optionsSchema = z.object({
+  turbo: z.boolean(),
   default: z.boolean(),
   style: z.enum(["new-york", "default"]),
   color: z.string(),
