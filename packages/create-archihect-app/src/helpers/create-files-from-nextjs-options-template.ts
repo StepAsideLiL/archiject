@@ -33,7 +33,7 @@ export default async function createFilesFromNextjsOptionsTemplate(
       (fileName.startsWith("lib") ||
         fileName.startsWith("app") ||
         fileName.startsWith("features") ||
-        fileName.startsWith("components"))
+        fileName.startsWith("components/"))
         ? path.join(projectPath, "src")
         : projectPath;
 
