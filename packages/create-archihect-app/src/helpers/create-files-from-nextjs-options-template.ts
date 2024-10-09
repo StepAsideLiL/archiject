@@ -143,7 +143,10 @@ export default async function createFilesFromNextjsOptionsTemplate(
     }
 
     // dark-mode
-    if (fileName.startsWith("features") && options.darkMode) {
+    if (
+      (fileName.startsWith("features") || fileName.startsWith("components")) &&
+      options.darkMode
+    ) {
       await fs.writeFile(path.join(copyPath, fileName), content);
     }
   });
