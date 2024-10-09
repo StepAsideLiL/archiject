@@ -5,6 +5,7 @@ import os from "os";
 import { PackageJson } from "type-fest";
 import ora from "ora";
 import getPackageVersion from "@/utils/get-package-version.js";
+import { Options } from "@/schema.js";
 
 /**
  * This function creates the package.json file for the project.
@@ -14,6 +15,7 @@ import getPackageVersion from "@/utils/get-package-version.js";
 export default async function createNextjsPackageJson(
   projectName: string,
   projectPath: string,
+  options: Options,
 ) {
   const spinner = ora("Creating package.json").start();
 
@@ -52,6 +54,14 @@ export default async function createNextjsPackageJson(
     },
   };
 
+  if (options.darkMode) {
+    packageJson.dependencies = {
+      ...packageJson.dependencies,
+      "@radix-ui/react-slot": "latest",
+      "next-themes": "latest",
+    };
+  }
+
   for (const dependency in packageJson.dependencies) {
     if (packageJson.dependencies[dependency] === "latest") {
       packageJson.dependencies[dependency] =
@@ -65,13 +75,17 @@ export default async function createNextjsPackageJson(
     }
   }
 
+  await fs.mkdir(projectPath, {
+    recursive: true,
+  });
+
   await fs
     .writeFile(
       path.join(projectPath, "package.json"),
       JSON.stringify(packageJson, null, 2) + os.EOL,
     )
     .then(() => {
-      spinner.succeed("package.json created successfully.");
+      spinner.succeed("package.json is created successfully.");
     })
     .catch((error) => {
       console.log(error);
