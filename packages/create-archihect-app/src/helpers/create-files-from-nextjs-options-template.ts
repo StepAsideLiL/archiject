@@ -145,7 +145,7 @@ export default async function createFilesFromNextjsOptionsTemplate(
 
     // dark-mode
     if (
-      (fileName.startsWith("features") || fileName.startsWith("components")) &&
+      (fileName.startsWith("features") || fileName.startsWith("components/")) &&
       options.darkMode
     ) {
       await fs.writeFile(path.join(copyPath, fileName), content);
