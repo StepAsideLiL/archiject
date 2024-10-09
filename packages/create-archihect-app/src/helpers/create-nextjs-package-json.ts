@@ -17,7 +17,7 @@ export default async function createNextjsPackageJson(
   projectPath: string,
   options: Options,
 ) {
-  const spinner = ora("Creating package.json").start();
+  const spinner = ora("Creating package.json for Nextjs").start();
 
   const packageJson: PackageJson = {
     name: projectName,
@@ -85,7 +85,7 @@ export default async function createNextjsPackageJson(
       JSON.stringify(packageJson, null, 2) + os.EOL,
     )
     .then(() => {
-      spinner.succeed("package.json is created successfully.");
+      spinner.succeed("package.json for Nextjs is created successfully.");
     })
     .catch((error) => {
       console.log(error);
