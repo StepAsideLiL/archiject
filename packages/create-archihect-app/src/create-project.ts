@@ -72,7 +72,7 @@ export default async function createProject(
   });
 
   await Promise.all([
-    options.install && (await installPackages(projectPath)),
+    options.install && (await installPackages(projectPath, nextjsProjectPath)),
     options.git && (await initGit(projectPath)),
   ]);
 }
