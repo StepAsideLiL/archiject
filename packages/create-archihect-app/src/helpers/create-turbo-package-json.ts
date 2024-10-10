@@ -1,4 +1,4 @@
-import getPackageVersion from "@/utils/get-package-version.js";
+import { getPackageVersion } from "@/utils/get-package-version.js";
 import userPackageManager from "@/utils/user-package-manager.js";
 import fs from "fs-extra";
 import ora from "ora";
