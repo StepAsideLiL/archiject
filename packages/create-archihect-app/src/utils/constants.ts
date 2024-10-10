@@ -44,7 +44,7 @@ export const directories = {
  * Specific version of the packages.
  */
 export const packageVersions = {
-  next: "14.2.13",
+  next: "14.2.15",
   nextPeerReact: "^18",
   typescript: "^5",
   nodeTypes: "^20",

@@ -4,7 +4,10 @@ import path from "path";
 import os from "os";
 import { PackageJson } from "type-fest";
 import ora from "ora";
-import getPackageVersion from "@/utils/get-package-version.js";
+import {
+  getPackageVersion,
+  getNextjsVersion,
+} from "@/utils/get-package-version.js";
 import { Options } from "@/schema.js";
 
 /**
@@ -19,9 +22,11 @@ export default async function createNextjsPackageJson(
 ) {
   const spinner = ora("Creating package.json for Nextjs").start();
 
+  const nextjsVersion = (await getNextjsVersion(14)) || packageVersions.next;
+
   const packageJson: PackageJson = {
     name: projectName,
-    version: "0.0.1",
+    version: "0.1.0",
     private: true,
     scripts: {
       dev: "next dev",
@@ -34,7 +39,7 @@ export default async function createNextjsPackageJson(
       "class-variance-authority": "latest",
       clsx: "latest",
       "lucide-react": "latest",
-      next: packageVersions.next,
+      next: nextjsVersion,
       react: packageVersions.nextPeerReact,
       "react-dom": packageVersions.nextPeerReact,
       "tailwind-merge": "latest",
@@ -45,7 +50,7 @@ export default async function createNextjsPackageJson(
       "@types/react": packageVersions.nextPeerReact,
       "@types/react-dom": packageVersions.nextPeerReact,
       eslint: packageVersions.eslint,
-      "eslint-config-next": packageVersions.next,
+      "eslint-config-next": nextjsVersion,
       postcss: packageVersions.postCss,
       prettier: "latest",
       "prettier-plugin-tailwindcss": "latest",
