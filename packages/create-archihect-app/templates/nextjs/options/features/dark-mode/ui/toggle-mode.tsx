@@ -17,9 +17,13 @@ export function ModeToggle() {
   }
 
   return (
-    <Button variant="outline" size="icon" onClick={handleClick}>
-      <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <MoonIcon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+    <Button
+      variant="outline"
+      className="relative h-auto gap-1 rounded-3xl p-1"
+      onClick={handleClick}
+    >
+      <SunIcon className="size-5 rounded-full bg-red-500 p-1 text-foreground dark:bg-transparent dark:text-muted-foreground" />
+      <MoonIcon className="size-5 rounded-full bg-transparent p-1 text-muted-foreground dark:bg-red-500 dark:text-foreground" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   );

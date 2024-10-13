@@ -133,7 +133,23 @@ export default async function createFilesFromNextjsOptionsTemplate(
 
     // app/page.tsx
     if (fileName === "app/page.tsx") {
-      await fs.writeFile(path.join(copyPath, fileName), content);
+      await fs.writeFile(
+        path.join(copyPath, fileName),
+        content
+          .replace(
+            "// <<import-dm-ui>>",
+            options.darkMode
+              ? `import { ModeToggle } from "@/features/dark-mode/ui/toggle-mode";`.replaceAll(
+                  "@/",
+                  `${options.importAlias}/`,
+                )
+              : ``,
+          )
+          .replace(
+            "{/* <<dm-ui>> */}",
+            options.darkMode ? `<ModeToggle />` : ``,
+          ),
+      );
     }
 
     // lib/*
