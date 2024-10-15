@@ -23,7 +23,7 @@ async function main() {
     )
     .usage("[dir] [opts]")
     .argument("[dir]", "The name of the project directory.")
-    .option("--turbo", "Use monorepo with Turborepo.", false)
+    .option("--turborepo", "Use monorepo with Turborepo.", false)
     .option("-d --default", "Use default options.", false)
     .option("--style [style]", "Style based on Shadcn.", "new-york")
     .option("--color [color]", "Color based on Shadcn.", "neutral")
